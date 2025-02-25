@@ -52,7 +52,7 @@ const StarRating = ({ rating }) => {
 // Component to render testimonials section
 const Testimonial = () => {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="px-4 py-8">
       {/* Header Section */}
       <div>
         <SectionTitle
