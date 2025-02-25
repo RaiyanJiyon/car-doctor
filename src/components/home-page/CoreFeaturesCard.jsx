@@ -5,6 +5,7 @@ import wrenchImg from '../../../public/assets/icons/Wrench.svg';
 import checkImg from '../../../public/assets/icons/check.svg';
 import deliveryImg from '../../../public/assets/icons/delivery.svg';
 import Image from 'next/image';
+import SectionTitle from '../shared/SectionTitle';
 
 const CoreFeaturesCard = () => {
     // Array of feature objects with icon source and label
@@ -20,12 +21,8 @@ const CoreFeaturesCard = () => {
     return (
         <div className="bg-white text-center">
             {/* Header Section */}
-            <div className="md:w-3/5 mx-auto">
-                <h3 className="text-primary font-bold mb-2">Core Features</h3>
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">Why Choose Us</h2>
-                <p className="text-secondary text-sm mb-8">
-                    The Majority Have Suffered Alteration In Some Form, By Injected Humour, Or Randomised Words Which Don't Look Even Slightly Believable.
-                </p>
+            <div>
+                <SectionTitle heading="Core Features" title="Why Choose Us" description="The Majority Have Suffered Alteration In Some Form, By Injected Humour, Or Randomized Words Which Don't Look Even Slightly Believable." />
             </div>
 
             {/* Features Grid */}
