@@ -1,6 +1,7 @@
 import Banner from "./Banner";
 import BusinessInfoCard from "./BusinessInfoCard";
 import CoreFeaturesCard from "./CoreFeaturesCard";
+import Products from "./Products";
 import Services from "./Services";
 import Testimonial from "./Testimonial";
 
@@ -11,10 +12,13 @@ const HomePage = () => {
                 <Banner />
             </div>
             <div className="mt-20">
+                <Services />
+            </div>
+            <div className="mt-20">
                 <BusinessInfoCard />
             </div>
             <div className="mt-20">
-                <Services />
+                <Products />
             </div>
             <div className="mt-20">
                 <CoreFeaturesCard />
