@@ -3,6 +3,7 @@ import BusinessInfoCard from "./BusinessInfoCard";
 import CoreFeaturesCard from "./CoreFeaturesCard";
 import Products from "./Products";
 import Services from "./Services";
+import TeamMembersSection from "./TeamMembersSection";
 import Testimonial from "./Testimonial";
 
 const HomePage = () => {
@@ -19,6 +20,9 @@ const HomePage = () => {
             </div>
             <div className="mt-20">
                 <Products />
+            </div>
+            <div className="mt-20">
+                <TeamMembersSection />
             </div>
             <div className="mt-20">
                 <CoreFeaturesCard />
