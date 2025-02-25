@@ -7,6 +7,9 @@ export default {
   ],
   theme: {
     extend: {
+      maxWidth: {
+        'screen-2xl': '1920px',
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

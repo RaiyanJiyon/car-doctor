@@ -9,7 +9,7 @@ const ServiceCard = ({ service }) => {
                 <Image 
                     src={service.image} 
                     alt={service.title} 
-                    className="w-full h-40 object-cover rounded-lg" // Use `object-cover` for better cropping 
+                    className="w-full h-40 object-fill rounded-lg" // Use `object-cover` for better cropping 
                     width={400} // Adjust based on your design 
                     height={160} 
                 /> 
