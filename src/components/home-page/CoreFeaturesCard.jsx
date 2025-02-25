@@ -19,7 +19,7 @@ const CoreFeaturesCard = () => {
     ];
 
     return (
-        <div className="bg-white text-center">
+        <div className="bg-white">
             {/* Header Section */}
             <div>
                 <SectionTitle heading="Core Features" title="Why Choose Us" description="The Majority Have Suffered Alteration In Some Form, By Injected Humour, Or Randomized Words Which Don't Look Even Slightly Believable." />
@@ -33,7 +33,7 @@ const CoreFeaturesCard = () => {
                         {/* Icon Image */}
                         <Image src={feature.icon} alt={feature.label} width={48} height={48} className="mb-2" />
                         {/* Feature Label */}
-                        <p className="text-lg font-bold text-[#444444]">{feature.label}</p>
+                        <p className="text-lg font-bold text-[#444444] text-center">{feature.label}</p>
                     </div>
                 ))}
             </div>

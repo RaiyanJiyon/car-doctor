@@ -1,6 +1,7 @@
 import Banner from "./Banner";
 import BusinessInfoCard from "./BusinessInfoCard";
 import CoreFeaturesCard from "./CoreFeaturesCard";
+import Testimonial from "./Testimonial";
 
 const HomePage = () => {
     return (
@@ -13,6 +14,9 @@ const HomePage = () => {
             </div>
             <div className="mt-20">
                 <CoreFeaturesCard />
+            </div>
+            <div className="mt-20">
+                <Testimonial />
             </div>
         </div>
     );

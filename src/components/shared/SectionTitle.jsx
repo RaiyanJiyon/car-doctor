@@ -1,6 +1,6 @@
 const SectionTitle = ({ heading, title, description }) => {
     return (
-        <div className="md:w-3/5 mx-auto">
+        <div className="md:w-3/5 mx-auto md:text-center">
             {/* Heading Text */}
             <h3 className="text-primary font-bold mb-2">{heading}</h3>
             {/* Title Text */}
