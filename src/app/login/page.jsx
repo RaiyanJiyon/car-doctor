@@ -1,11 +1,15 @@
 "use client";
-
 import SocialSignIn from "@/components/shared/SocialSignIn";
 import Image from "next/image";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import { signIn } from "next-auth/react";
+import SuccessToaster from "@/components/shared/toaster/SuccessToaster";
+import ErrorToaster from "@/components/shared/toaster/ErrorToaster";
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -13,8 +17,25 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    const { email, password } = data;
+    try {
+      const response = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (response.error) {
+        ErrorToaster(response.error.message || "Invalid email or password.");
+      } else {
+        SuccessToaster("Login successful!");
+        router.push("/"); // Redirect to the home
+      }
+    } catch (error) {
+      console.error("Login error:", error.message);
+      ErrorToaster("Unable to connect to the server. Please try again later.");
+    }
   };
 
   return (
@@ -30,38 +51,42 @@ const LoginPage = () => {
             className="rounded-lg"
           />
         </div>
-
         {/* Right Side - Form */}
         <div className="flex justify-center items-center border border-[#e8e8e8] rounded-lg">
           <div className="bg-white p-8 rounded-lg w-full md:w-11/12">
             <h2 className="text-2xl font-semibold text-center mb-6">Login</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
+              {/* Email Field */}
               <div className="mb-6">
-                <label className="block text-gray-700 font-semibold mb-4">
+                <label htmlFor="email" className="block text-gray-700 font-semibold mb-4">
                   Email
                 </label>
                 <input
-                  {...register("email", { required: true })}
+                  id="email"
+                  {...register("email", { required: "Email is required" })}
                   type="email"
-                  name="email"
                   className="w-full px-4 py-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                   placeholder="Your email"
+                  aria-invalid={errors.email ? "true" : "false"}
                 />
-                {errors.email && <span className="text-red-500">Email is required</span>}
+                {errors.email && <span className="text-red-500">{errors.email.message}</span>}
               </div>
+              {/* Password Field */}
               <div className="mb-6">
-                <label className="block text-gray-700 font-semibold mb-4">
-                  Confirm Password
+                <label htmlFor="password" className="block text-gray-700 font-semibold mb-4">
+                  Password
                 </label>
                 <input
-                  {...register("password", { required: true })}
+                  id="password"
+                  {...register("password", { required: "Password is required" })}
                   type="password"
-                  name="password"
                   className="w-full px-4 py-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                   placeholder="Your password"
+                  aria-invalid={errors.password ? "true" : "false"}
                 />
-                {errors.password && <span className="text-red-500">Password is required</span>}
+                {errors.password && <span className="text-red-500">{errors.password.message}</span>}
               </div>
+              {/* Submit Button */}
               <button
                 type="submit"
                 className="w-full bg-primary text-white font-bold py-4 rounded-lg hover:bg-orange-600 transition"
@@ -70,15 +95,15 @@ const LoginPage = () => {
               </button>
             </form>
             <div className="text-center my-4 text-gray-500 font-medium">
-              Or Sign Up with
+              Or Sign In with
             </div>
             <div>
               <SocialSignIn />
             </div>
             <p className="text-center mt-4 text-gray-600">
-              Already have an account?{" "}
+              Don't have an account?{" "}
               <Link href="/sign-up" className="text-primary font-bold">
-                Sign In
+                Sign Up
               </Link>
             </p>
           </div>
