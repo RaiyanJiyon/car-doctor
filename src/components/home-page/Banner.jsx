@@ -36,7 +36,7 @@ const Banner = () => {
     <div className="rounded-lg overflow-hidden"> {/* Wrapper with overflow hidden */}
       <section
         className="bg-cover bg-center h-[400px] md:h-[500px] relative"
-        style={{ backgroundImage: `url(${currentBackground})` }}
+        style={{ backgroundImage: `url(${currentBackground})`, objectFit: 'fill' }}
       >
         {/* Overlay for better text visibility */}
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>

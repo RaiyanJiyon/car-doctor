@@ -30,14 +30,14 @@ const Navbar = () => {
   return (
     <div className="w-11/12 mx-auto">
       <nav className="bg-white w-full z-20 top-0 start-0 mt-2">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <div className="flex flex-wrap items-center justify-between mx-auto p-4">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
             <Image src="/assets/logo.svg" width={80} height={86} alt="Flowbite Logo" />
           </Link>
 
           {/* Right Side Icons and Button */}
-          <div className="flex items-center justify-between md:gap-6 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+          <div className="flex items-center justify-between md:gap-4 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <span>
               <HiOutlineShoppingBag className="hidden sm:flex text-xl" />
             </span>
@@ -49,6 +49,12 @@ const Navbar = () => {
               className="text-primary hover:text-white border border-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-3 text-center">
               Appointment
             </button>
+            <Link
+              href="/login"
+              type="button"
+              className="bg-primary hover:bg-red-600 text-white font-bold rounded-lg text-sm px-5 py-3 text-center">
+              Login
+            </Link>
 
             {/* Hamburger Button */}
             <button
