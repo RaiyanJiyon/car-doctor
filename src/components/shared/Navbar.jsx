@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { IoSearchOutline } from "react-icons/io5";
@@ -37,12 +38,12 @@ const Navbar = () => {
           </Link>
 
           {/* Right Side Icons and Button */}
-          <div className="flex items-center justify-between md:gap-4 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+          <div className="flex items-center justify-between lg:gap-4 lg:order-2 space-x-3 lg:space-x-0 rtl:space-x-reverse">
             <span>
-              <HiOutlineShoppingBag className="hidden sm:flex text-xl" />
+              <HiOutlineShoppingBag className="hidden lg:flex text-xl" />
             </span>
             <span>
-              <IoSearchOutline className="hidden sm:flex text-xl" />
+              <IoSearchOutline className="hidden lg:flex text-xl" />
             </span>
             <button
               type="button"
@@ -60,7 +61,7 @@ const Navbar = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
               aria-controls="navbar-sticky"
               aria-expanded={isOpen}>
               <span className="sr-only">Open main menu</span>
@@ -83,15 +84,15 @@ const Navbar = () => {
 
           {/* Navigation Links */}
           <div
-            className={`${isOpen ? "block" : "hidden"} items-center justify-between w-full md:flex md:w-auto md:order-1`}
+            className={`${isOpen ? "block" : "hidden"} items-center justify-between w-full lg:flex lg:w-auto lg:order-1`}
             id="navbar-sticky">
-            <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white">
+            <ul className="flex flex-col p-4 lg:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 lg:space-x-8 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 lg:bg-white">
               {navLinks.map((NavLink, idx) => (
                 <li key={idx}>
                   <Link
                     href={NavLink.path}
                     onClick={handleLinkClick} // Close the menu when a link is clicked
-                    className={`block font-semibold py-2 px-3 rounded-sm md:bg-transparent md:p-0 ${isActive(NavLink.path)}`}
+                    className={`block font-semibold py-2 px-3 rounded-sm lg:bg-transparent lg:p-0 ${isActive(NavLink.path)}`}
                     aria-current="page">
                     {NavLink.name}
                   </Link>
