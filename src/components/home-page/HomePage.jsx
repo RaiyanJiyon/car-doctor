@@ -1,3 +1,4 @@
+import AboutUsSection from "./AboutUsSection";
 import Banner from "./Banner";
 import BusinessInfoCard from "./BusinessInfoCard";
 import CoreFeaturesCard from "./CoreFeaturesCard";
@@ -11,6 +12,9 @@ const HomePage = () => {
         <div className="w-11/12 max-w-screen-2xl mx-auto">
             <div className="mt-4">
                 <Banner />
+            </div>
+            <div className="mt-20">
+                <AboutUsSection />
             </div>
             <div className="mt-20">
                 <Services />
