@@ -18,7 +18,7 @@ const AboutUsSection = () => {
                     className="rounded-lg" 
                     />
 
-                    <div className="absolute -bottom-16 -right-10">
+                    <div className="absolute -bottom-16 -right-10 border border-white rounded-lg p-1 bg-white">
                     <Image 
                     // Secondary image of parts
                     // src="https://i.ibb.co.com/dJrdRHhL/parts.jpg" 

@@ -6,7 +6,7 @@ import TeamMemberCard from "./TeamMemberCard";
 
 const TeamMembersSection = () => {
   return (
-    <div className="p-8 text-center">
+    <div className="">
       {/* Header Section */}
       <div>
         <SectionTitle

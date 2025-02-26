@@ -9,7 +9,7 @@ import {
 
 const TeamMemberCard = ({ member }) => {
   return (
-    <div className="bg-white shadow-lg rounded-xl p-4 border border-[#e8e8e8]">
+    <div className="bg-white shadow-lg rounded-xl p-4 border border-[#e8e8e8] text-center">
       {/* Member Image */}
       <div className="relative rounded-lg">
         <Image
