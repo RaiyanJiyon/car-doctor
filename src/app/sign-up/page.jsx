@@ -1,3 +1,4 @@
+import SocialSignIn from "@/components/shared/SocialSignIn";
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
@@ -52,28 +53,15 @@ const SignUpPage = () => {
                   placeholder="Your password"
                 />
               </div>
-              <button type="submit" className="w-full bg-primary text-white py-4 rounded-lg hover:bg-orange-600 transition">
+              <button type="submit" className="w-full bg-primary text-white font-bold py-4 rounded-lg hover:bg-orange-600 transition">
                 Sign Up
               </button>
             </form>
             <div className="text-center my-4 text-gray-500 font-medium">
               Or Sign Up with
             </div>
-            <div className="flex justify-center space-x-4">
-              <button className="bg-gray-200 p-2 rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-300 transition">
-                <FaFacebookF className="text-blue-600" />
-              </button>
-              <button className="bg-gray-200 p-2 rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-300 transition">
-                <FaLinkedinIn className="text-blue-600" />
-              </button>
-              <button className="bg-gray-200 p-2 rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-300 transition">
-                <Image
-                  src="/assets/icons/google.png"
-                  alt="google logo"
-                  width={15}
-                  height={15}
-                />
-              </button>
+            <div>
+                <SocialSignIn />
             </div>
             <p className="text-center mt-4 text-gray-600">
               Already have an account?{" "}
