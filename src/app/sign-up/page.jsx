@@ -1,6 +1,7 @@
-"use client"
-
+"use client";
 import SocialSignIn from "@/components/shared/SocialSignIn";
+import ErrorToaster from "@/components/shared/toaster/ErrorToaster";
+import SuccessToaster from "@/components/shared/toaster/SuccessToaster";
 import Image from "next/image";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -13,9 +14,28 @@ const SignUpPage = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data)
-  }
+  const onSubmit = async (data) => {
+    try {
+      const response = await fetch("http://localhost:3000/sign-up/api", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.status === 201) {
+        SuccessToaster("Sign-up successful! Please check your email.");
+        reset(); // Reset the form after successful submission
+      } else {
+        const errorData = await response.json();
+        ErrorToaster(errorData.message || "An error occurred during sign-up.");
+      }
+    } catch (error) {
+      console.error("Network or server error:", error);
+      ErrorToaster("Unable to connect to the server. Please try again later.");
+    }
+  };
 
   return (
     <section className="bg-white w-full">
@@ -30,52 +50,64 @@ const SignUpPage = () => {
             className="rounded-lg"
           />
         </div>
-
         {/* Right Side - Form */}
         <div className="flex justify-center items-center border border-[#e8e8e8] rounded-lg">
           <div className="bg-white p-8 rounded-lg w-full md:w-11/12">
             <h2 className="text-2xl font-semibold text-center mb-6">Sign Up</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
+              {/* Name Field */}
               <div className="mb-6">
-                <label className="block text-gray-700 font-semibold mb-4">
+                <label htmlFor="name" className="block text-gray-700 font-semibold mb-4">
                   Name
                 </label>
                 <input
-                {...register("name", { required: true })}
+                  id="name"
+                  {...register("name", { required: "Name is required" })}
                   type="text"
-                  name="name"
                   className="w-full px-4 py-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                   placeholder="Your name"
+                  aria-invalid={errors.name ? "true" : "false"}
                 />
-                {errors.name && <span className="text-red-500">Name is required</span>}
+                {errors.name && <span className="text-red-500">{errors.name.message}</span>}
               </div>
+              {/* Email Field */}
               <div className="mb-6">
-                <label className="block text-gray-700 font-semibold mb-4">
+                <label htmlFor="email" className="block text-gray-700 font-semibold mb-4">
                   Email
                 </label>
                 <input
-                {...register("email", { required: true })}
+                  id="email"
+                  {...register("email", { required: "Email is required" })}
                   type="email"
-                  name="email"
                   className="w-full px-4 py-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                   placeholder="Your email"
+                  aria-invalid={errors.email ? "true" : "false"}
                 />
-                {errors.email && <span className="text-red-500">Email is required</span>}
+                {errors.email && <span className="text-red-500">{errors.email.message}</span>}
               </div>
+              {/* Password Field */}
               <div className="mb-6">
-                <label className="block text-gray-700 font-semibold mb-4">
-                  Confirm Password
+                <label htmlFor="password" className="block text-gray-700 font-semibold mb-4">
+                  Password
                 </label>
                 <input
-                {...register("password", { required: true })}
+                  id="password"
+                  {...register("password", { 
+                    required: "Password is required",
+                    minLength: { value: 8, message: "Password must be at least 8 characters long" }
+                  })}
                   type="password"
-                  name="password"
                   className="w-full px-4 py-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                   placeholder="Your password"
+                  aria-invalid={errors.password ? "true" : "false"}
                 />
-                {errors.password && <span className="text-red-500">Password is required</span>}
+                {errors.password && <span className="text-red-500">{errors.password.message}</span>}
               </div>
-              <button type="submit" className="w-full bg-primary text-white font-bold py-4 rounded-lg hover:bg-orange-600 transition">
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className="w-full bg-primary text-white font-bold py-4 rounded-lg hover:bg-orange-600 transition"
+              >
                 Sign Up
               </button>
             </form>
@@ -83,7 +115,7 @@ const SignUpPage = () => {
               Or Sign Up with
             </div>
             <div>
-                <SocialSignIn />
+              <SocialSignIn />
             </div>
             <p className="text-center mt-4 text-gray-600">
               Already have an account?{" "}

@@ -1,4 +1,5 @@
 import { connectDB } from "@/lib/connectDB";
+import bcrypt from "bcrypt";
 
 export const POST = async (request) => {
     const newUser = await request.json();
@@ -14,8 +15,10 @@ export const POST = async (request) => {
             return new Response(JSON.stringify({ message: 'User already exists' }), { status: 409 });
         }
 
+        const hashPassword = bcrypt.hashSync(newUser.password, 14);
+
         // Insert the new user into the database
-        const response = await userCollection.insertOne(newUser);
+        const response = await userCollection.insertOne({...newUser, password: hashPassword});
         return new Response(JSON.stringify({ message: 'New user added', data: response }), { status: 201 });
 
     } catch (error) {
