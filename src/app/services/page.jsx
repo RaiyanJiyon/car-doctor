@@ -3,6 +3,7 @@ import ServiceDescription from "@/components/service-page/left-layout/ServiceDes
 import ServiceSteps from "@/components/service-page/left-layout/ServiceSteps";
 import ServiceTitle from "@/components/service-page/left-layout/ServiceTitle";
 import DownloadSection from "@/components/service-page/right-layout/DownloadSection";
+import HelpSection from "@/components/service-page/right-layout/HelpSection";
 import ServiceList from "@/components/service-page/right-layout/ServiceList";
 import PageCover from "@/components/shared/PageCover";
 
@@ -14,7 +15,7 @@ const ServicesPage = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20">
-                <div className="col-span-2 border border-red-500">
+                <div className="col-span-2">
                     <div>
                         <ServiceTitle />
                     </div>
@@ -28,12 +29,15 @@ const ServicesPage = () => {
                         <ServiceSteps />
                     </div>
                 </div>
-                <div className="col-span-1 border border-green-500">
+                <div className="col-span-1">
                     <div>
                         <ServiceList />
                     </div>
                     <div className="mt-8">
                         <DownloadSection />
+                    </div>
+                    <div className="mt-8">
+                        <HelpSection />
                     </div>
                 </div>
             </div>
