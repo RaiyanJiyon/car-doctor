@@ -4,6 +4,7 @@ import ServiceSteps from "@/components/service-page/left-layout/ServiceSteps";
 import ServiceTitle from "@/components/service-page/left-layout/ServiceTitle";
 import DownloadSection from "@/components/service-page/right-layout/DownloadSection";
 import HelpSection from "@/components/service-page/right-layout/HelpSection";
+import PricingCard from "@/components/service-page/right-layout/PricingCard";
 import ServiceList from "@/components/service-page/right-layout/ServiceList";
 import PageCover from "@/components/shared/PageCover";
 
@@ -38,6 +39,9 @@ const ServicesPage = () => {
                     </div>
                     <div className="mt-8">
                         <HelpSection />
+                    </div>
+                    <div className="mt-8">
+                        <PricingCard />
                     </div>
                 </div>
             </div>
