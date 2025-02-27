@@ -30,6 +30,7 @@ const LoginPage = () => {
         ErrorToaster(response.error.message || "Invalid email or password.");
       } else {
         SuccessToaster("Login successful!");
+        reset();
         router.push("/"); // Redirect to the home
       }
     } catch (error) {

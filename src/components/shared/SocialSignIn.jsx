@@ -1,11 +1,12 @@
 "use client";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FaFacebookF, FaGithub } from "react-icons/fa";
 
 const SocialSignIn = () => {
   const router = useRouter();
+  const session = useSession();
 
   const handleSocialSignIn = async (provider) => {
     try {
@@ -15,12 +16,11 @@ const SocialSignIn = () => {
       // Log the response for debugging purposes
       console.log("Response from signIn:", response);
 
-      // Check for errors
-      if (response?.error) {
-        console.error("Error during sign-in:", response.error);
-      } else {
+      if (session.status === "authenticated") {
         // Redirect to the home page on success
-        router.push('/');
+        router.push("/");
+      } else {
+        console.error("Error during sign-in:", response.error);
       }
     } catch (error) {
       console.error("Sign-in error:", error.message);

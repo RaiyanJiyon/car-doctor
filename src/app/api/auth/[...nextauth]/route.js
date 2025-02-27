@@ -13,11 +13,11 @@ export const handler = NextAuth({
   providers: [
     GoogleProvider({
       clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
-      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET
+      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
     }),
     GitHubProvider({
       clientId: process.env.NEXT_PUBLIC_GITHUB_ID,
-      clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET
+      clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET,
     }),
     CredentialsProvider({
       name: "Credentials",
@@ -29,15 +29,12 @@ export const handler = NextAuth({
         try {
           const db = await connectDB();
           const user = await db.collection("users").findOne({ email: credentials.email });
-
           if (!user) {
             throw new Error("User not found.");
           }
-
           if (!bcrypt.compareSync(credentials.password, user.password)) {
             throw new Error("Invalid password.");
           }
-
           return { id: user._id, email: user.email, name: user.name };
         } catch (error) {
           console.error("Authentication error:", error.message);
@@ -51,11 +48,37 @@ export const handler = NextAuth({
   },
   secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
   callbacks: {
-    session: async ({ session, token }) => {
+    async signIn({ user, account }) {
+      try {
+        const db = await connectDB();
+
+        // Check if the user already exists in the database
+        const existingUser = await db.collection("users").findOne({ email: user.email });
+
+        if (!existingUser) {
+          // Create a new user in the database
+          const newUser = {
+            name: user.name,
+            email: user.email,
+            image: user.image,
+            provider: account.provider, // Store the provider (e.g., "google", "github")
+            createdAt: new Date(),
+          };
+
+          await db.collection("users").insertOne(newUser);
+        }
+
+        return true; // Allow sign-in
+      } catch (error) {
+        console.error("Error during sign-in:", error.message);
+        return false; // Prevent sign-in
+      }
+    },
+    async session({ session, token }) {
       session.user.id = token.id; // Add user ID to the session
       return session;
     },
-    jwt: async ({ token, user }) => {
+    async jwt({ token, user }) {
       if (user) {
         token.id = user.id; // Add user ID to the JWT token
       }

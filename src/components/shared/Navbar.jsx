@@ -54,21 +54,30 @@ const Navbar = () => {
               <span>Loading...</span>
             ) : status === "authenticated" ? (
               <>
-              <div className="rounded-full">
-                <Image 
-                alt={`${session?.user?.name}`} 
-                src={`${session?.user?.image}`} 
-                className="rounded-full"
-                width={50} 
-                height={50} />
-              </div>
-              <button
-                onClick={() => signOut()}
-                type="button"
-                aria-label="Logout"
-                className="bg-primary hover:bg-red-600 text-white font-bold rounded-lg text-sm px-5 py-3 text-center">
-                Logout
-              </button>
+                <div className="rounded-full">
+                  {session?.user?.image ? (
+                    <Image
+                      alt={session.user.name || 'User Avatar'}
+                      src={session.user.image}
+                      className="rounded-full"
+                      width={50}
+                      height={50}
+                    />
+                  ) : (
+                    <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+                      {/* Placeholder avatar */}
+                      <span className="text-gray-500">U</span>
+                    </div>
+                  )}
+                </div>
+
+                <button
+                  onClick={() => signOut()}
+                  type="button"
+                  aria-label="Logout"
+                  className="bg-primary hover:bg-red-600 text-white font-bold rounded-lg text-sm px-5 py-3 text-center">
+                  Logout
+                </button>
               </>
             ) : (
               <Link
