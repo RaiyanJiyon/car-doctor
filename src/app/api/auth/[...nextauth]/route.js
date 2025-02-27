@@ -1,5 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
+import GitHubProvider from "next-auth/providers/github";
 import bcrypt from "bcrypt";
 import { connectDB } from "@/lib/connectDB";
 
@@ -9,6 +11,14 @@ export const handler = NextAuth({
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   providers: [
+    GoogleProvider({
+      clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET
+    }),
+    GitHubProvider({
+      clientId: process.env.NEXT_PUBLIC_GITHUB_ID,
+      clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET
+    }),
     CredentialsProvider({
       name: "Credentials",
       credentials: {
@@ -39,7 +49,7 @@ export const handler = NextAuth({
   pages: {
     signIn: "/login",
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
   callbacks: {
     session: async ({ session, token }) => {
       session.user.id = token.id; // Add user ID to the session

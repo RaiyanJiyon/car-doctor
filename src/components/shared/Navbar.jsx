@@ -53,6 +53,15 @@ const Navbar = () => {
             {status === "loading" ? (
               <span>Loading...</span>
             ) : status === "authenticated" ? (
+              <>
+              <div className="rounded-full">
+                <Image 
+                alt={`${session?.user?.name}`} 
+                src={`${session?.user?.image}`} 
+                className="rounded-full"
+                width={50} 
+                height={50} />
+              </div>
               <button
                 onClick={() => signOut()}
                 type="button"
@@ -60,6 +69,7 @@ const Navbar = () => {
                 className="bg-primary hover:bg-red-600 text-white font-bold rounded-lg text-sm px-5 py-3 text-center">
                 Logout
               </button>
+              </>
             ) : (
               <Link
                 href="/login"
