@@ -1,4 +1,4 @@
-const ServiceSection = () => {
+const PricingCard = () => {
     return (
         <div>
             
@@ -6,4 +6,4 @@ const ServiceSection = () => {
     );
 };
 
-export default ServiceSection;
+export default PricingCard;
