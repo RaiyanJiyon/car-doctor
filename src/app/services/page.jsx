@@ -2,6 +2,7 @@ import ServiceCard from "@/components/service-page/left-layout/ServiceCard";
 import ServiceDescription from "@/components/service-page/left-layout/ServiceDescription";
 import ServiceSteps from "@/components/service-page/left-layout/ServiceSteps";
 import ServiceTitle from "@/components/service-page/left-layout/ServiceTitle";
+import DownloadSection from "@/components/service-page/right-layout/DownloadSection";
 import ServiceList from "@/components/service-page/right-layout/ServiceList";
 import PageCover from "@/components/shared/PageCover";
 
@@ -28,7 +29,12 @@ const ServicesPage = () => {
                     </div>
                 </div>
                 <div className="col-span-1 border border-green-500">
-                    <ServiceList />
+                    <div>
+                        <ServiceList />
+                    </div>
+                    <div className="mt-8">
+                        <DownloadSection />
+                    </div>
                 </div>
             </div>
         </div>
