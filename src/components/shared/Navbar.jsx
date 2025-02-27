@@ -1,15 +1,16 @@
 "use client";
-
 import Image from "next/image";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { IoSearchOutline } from "react-icons/io5";
 import Link from "next/link";
-import { usePathname } from "next/navigation"; // Correct hook
+import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { signOut, useSession } from "next-auth/react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const { data: session, status } = useSession();
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -23,7 +24,6 @@ const Navbar = () => {
     return pathname === path ? "text-primary" : "text-secondary";
   };
 
-  // Function to handle link click and close the menu
   const handleLinkClick = () => {
     setIsOpen(false); // Close the menu
   };
@@ -50,13 +50,25 @@ const Navbar = () => {
               className="text-primary hover:text-white border border-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-3 text-center">
               Appointment
             </button>
-            <Link
-              href="/login"
-              type="button"
-              className="bg-primary hover:bg-red-600 text-white font-bold rounded-lg text-sm px-5 py-3 text-center">
-              Login
-            </Link>
-
+            {status === "loading" ? (
+              <span>Loading...</span>
+            ) : status === "authenticated" ? (
+              <button
+                onClick={() => signOut()}
+                type="button"
+                aria-label="Logout"
+                className="bg-primary hover:bg-red-600 text-white font-bold rounded-lg text-sm px-5 py-3 text-center">
+                Logout
+              </button>
+            ) : (
+              <Link
+                href="/login"
+                type="button"
+                aria-label="Login"
+                className="bg-primary hover:bg-red-600 text-white font-bold rounded-lg text-sm px-5 py-3 text-center">
+                Login
+              </Link>
+            )}
             {/* Hamburger Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -91,7 +103,7 @@ const Navbar = () => {
                 <li key={idx}>
                   <Link
                     href={NavLink.path}
-                    onClick={handleLinkClick} // Close the menu when a link is clicked
+                    onClick={handleLinkClick}
                     className={`block font-semibold py-2 px-3 rounded-sm lg:bg-transparent lg:p-0 ${isActive(NavLink.path)}`}
                     aria-current="page">
                     {NavLink.name}
