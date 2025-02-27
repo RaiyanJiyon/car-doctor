@@ -35,8 +35,15 @@ const ServiceSteps = () => {
                 ))}
             </div>
 
-            <div className="w-full mt-8">
-                <iframe className="w-full" height="400" src="https://www.youtube.com/embed/hBPvKna1Adw?si=lnRy2WCFOrwVpMYq" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+            <div className="w-full mt-8 rounded-lg">
+                <iframe 
+                className="w-full rounded-lg" 
+                height="400" 
+                src="https://www.youtube.com/embed/hBPvKna1Adw?si=lnRy2WCFOrwVpMYq" title="YouTube video player" frameBorder="0" 
+                allow="accelerometer; autoplay; 
+                clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerPolicy="strict-origin-when-cross-origin" 
+                allowFullScreen></iframe>
             </div>
         </div>
     );

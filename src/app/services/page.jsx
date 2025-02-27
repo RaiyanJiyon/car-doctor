@@ -10,12 +10,12 @@ import PageCover from "@/components/shared/PageCover";
 
 const ServicesPage = () => {
     return (
-        <div className="w-11/12 max-w-screen-2xl mx-auto">
+        <div className="w-11/12 max-w-screen-2xl mx-auto mb-28">
             <div>
                 <PageCover title="Service Details" prevPage="Home" nextPage="Service Details" />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-20">
                 <div className="col-span-2">
                     <div>
                         <ServiceTitle />

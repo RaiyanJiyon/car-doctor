@@ -11,7 +11,7 @@ const services = [
 const ServiceItem = ({ title }) => (
   <div className="flex justify-between items-center bg-white hover:bg-primary hover:text-white p-4 rounded-lg">
     <h2 className="font-semibold">{title}</h2>
-    <IoArrowForwardOutline className="text-primary" />
+    <IoArrowForwardOutline className="text-primary hover:text-white" />
   </div>
 );
 
