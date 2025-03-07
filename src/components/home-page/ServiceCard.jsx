@@ -1,5 +1,6 @@
 // Import Next.js Image component
 import Image from "next/image";
+import Link from "next/link";
 
 const ServiceCard = ({ service }) => {
   return (
@@ -21,12 +22,14 @@ const ServiceCard = ({ service }) => {
 
         <div className="flex justify-between items-center mt-6">
           <p className="text-red-500 font-bold">$20.00</p>
+          <Link href={`/services/${service._id}`}>
           <button
             type="button"
             className="bg-primary text-white font-bold p-2 rounded-md"
-          >
+            >
             Buy Now
           </button>
+            </Link>
         </div>
       </div>
     </div>

@@ -1,52 +1,22 @@
-import ServiceCard from "@/components/service-page/left-layout/ServiceCard";
-import ServiceDescription from "@/components/service-page/left-layout/ServiceDescription";
-import ServiceSteps from "@/components/service-page/left-layout/ServiceSteps";
-import ServiceTitle from "@/components/service-page/left-layout/ServiceTitle";
-import DownloadSection from "@/components/service-page/right-layout/DownloadSection";
-import HelpSection from "@/components/service-page/right-layout/HelpSection";
-import PricingCard from "@/components/service-page/right-layout/PricingCard";
-import ServiceList from "@/components/service-page/right-layout/ServiceList";
-import PageCover from "@/components/shared/PageCover";
+"use client"; // Add this directive to make the component a client component
+
+import ServiceCard from "@/components/home-page/ServiceCard";
+import useServices from "@/hooks/useServices";
 
 const ServicesPage = () => {
-    return (
-        <div className="w-11/12 max-w-screen-2xl mx-auto mb-28">
-            <div>
-                <PageCover title="Service Details" prevPage="Home" nextPage="Service Details" />
-            </div>
+  const { services, loading } = useServices();
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-20">
-                <div className="col-span-2">
-                    <div>
-                        <ServiceTitle />
-                    </div>
-                    <div className="mt-8">
-                        <ServiceCard />
-                    </div>
-                    <div className="mt-8">
-                        <ServiceDescription />
-                    </div>
-                    <div className="mt-8">
-                        <ServiceSteps />
-                    </div>
-                </div>
-                <div className="col-span-1">
-                    <div>
-                        <ServiceList />
-                    </div>
-                    <div className="mt-8">
-                        <DownloadSection />
-                    </div>
-                    <div className="mt-8">
-                        <HelpSection />
-                    </div>
-                    <div className="mt-8">
-                        <PricingCard />
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+  return (
+    <div className="w-11/12 max-w-screen-2xl mx-auto mt-10 mb-20">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {
+          services?.length > 0 && services?.map(service => (
+            <ServiceCard key={service._id} service={service} />
+          ))
+        }
+      </div>
+    </div>
+  );
 };
 
 export default ServicesPage;
