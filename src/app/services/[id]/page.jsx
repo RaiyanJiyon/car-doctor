@@ -42,7 +42,7 @@ const ServiceDetailsPage = ({params}) => {
                         <ServiceTitle service={service} />
                     </div>
                     <div className="mt-8">
-                        <ServiceCard />
+                        <ServiceCard service={service} />
                     </div>
                     <div className="mt-8">
                         <ServiceDescription />
