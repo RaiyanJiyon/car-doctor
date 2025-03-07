@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import ServiceCard from "@/components/service-page/left-layout/ServiceCard";
 import ServiceDescription from "@/components/service-page/left-layout/ServiceDescription";
@@ -11,63 +11,69 @@ import ServiceList from "@/components/service-page/right-layout/ServiceList";
 import PageCover from "@/components/shared/PageCover";
 import { useState, useEffect } from "react";
 
-const ServiceDetailsPage = ({params}) => {
-    const [service, setService] = useState([]);
-    const [loading, setLoading] = useState(true);
+const ServiceDetailsPage = ({ params }) => {
+  const [service, setService] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    const getService = async () => {
-        try {
-            const response = await fetch(`http://localhost:3000/services/api/${params.id}`);
-            const data = await response.json();
-            setService(data.data);
-        } catch (error) {
-            console.error(error.message);
-        }
+  const getService = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/services/api/${params.id}`
+      );
+      const data = await response.json();
+      setService(data.data);
+    } catch (error) {
+      console.error(error.message);
     }
+  };
 
-    useEffect(() => {
-        getService();
-    }, [])
+  useEffect(() => {
+    getService();
+  }, []);
 
-    console.log(service)
-    return (
-        <div className="w-11/12 max-w-screen-2xl mx-auto mb-28">
-            <div>
-                <PageCover title="Service Details" prevPage="Home" nextPage="Service Details" />
-            </div>
+  console.log(service);
+  return (
+    <div className="w-11/12 max-w-screen-2xl mx-auto mb-28">
+      <div>
+        <PageCover
+          title="Service Details"
+          prevPage="Home"
+          nextPage="Service Details"
+        />
+      </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-20">
-                <div className="col-span-2">
-                    <div>
-                        <ServiceTitle service={service} />
-                    </div>
-                    <div className="mt-8">
-                        <ServiceCard service={service} />
-                    </div>
-                    <div className="mt-8">
-                        <ServiceDescription />
-                    </div>
-                    <div className="mt-8">
-                        <ServiceSteps />
-                    </div>
-                </div>
-                <div className="col-span-1">
-                    <div>
-                        <ServiceList />
-                    </div>
-                    <div className="mt-8">
-                        <DownloadSection />
-                    </div>
-                    <div className="mt-8">
-                        <HelpSection />
-                    </div>
-                    <div className="mt-8">
-                        <PricingCard service={service} />
-                    </div>
-                </div>
-            </div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-20">
+        <div className="col-span-2">
+          <div>
+            <ServiceTitle service={service} />
+          </div>
+          <div className="mt-8">
+            <ServiceCard service={service} />
+          </div>
+          <div className="mt-8">
+            <ServiceDescription />
+          </div>
+          <div className="mt-8">
+            <ServiceSteps />
+          </div>
         </div>
-    );
+        <div className="col-span-1">
+          <div>
+            <ServiceList />
+          </div>
+          <div className="mt-8">
+            <DownloadSection />
+          </div>
+          <div className="mt-8">
+            <HelpSection />
+          </div>
+          <div className="mt-8">
+            <PricingCard service={service} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default ServiceDetailsPage;
