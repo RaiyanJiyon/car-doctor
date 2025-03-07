@@ -62,7 +62,7 @@ const ServiceDetailsPage = ({params}) => {
                         <HelpSection />
                     </div>
                     <div className="mt-8">
-                        <PricingCard />
+                        <PricingCard service={service} />
                     </div>
                 </div>
             </div>
