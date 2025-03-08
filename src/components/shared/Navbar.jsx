@@ -39,22 +39,22 @@ const Navbar = () => {
 
           {/* Right Side Icons and Button */}
           <div className="flex items-center justify-between lg:gap-4 lg:order-2 space-x-3 lg:space-x-0 rtl:space-x-reverse">
-            <span>
+            <Link href="/my-bookings">
               <HiOutlineShoppingBag className="hidden lg:flex text-xl" />
-            </span>
+            </Link>
             <span>
               <IoSearchOutline className="hidden lg:flex text-xl" />
             </span>
             <button
               type="button"
-              className="text-primary hover:text-white border border-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-3 text-center">
+              className="hidden sm:flex text-primary hover:text-white border border-primary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-3 text-center">
               Appointment
             </button>
             {status === "loading" ? (
-              <span>Loading...</span>
+              <span className="hidden sm:flex">Loading...</span>
             ) : status === "authenticated" ? (
               <>
-                <div className="rounded-full">
+                <div className="hidden sm:flex rounded-full">
                   {session?.user?.image ? (
                     <Image
                       alt={session.user.name || 'User Avatar'}

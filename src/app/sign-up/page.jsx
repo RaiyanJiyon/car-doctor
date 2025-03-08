@@ -18,10 +18,10 @@ const SignUpPage = () => {
     try {
       const response = await fetch("http://localhost:3000/sign-up/api", {
         method: "POST",
-        body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify(data),
       });
 
       if (response.status === 201) {

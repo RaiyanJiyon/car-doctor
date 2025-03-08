@@ -120,7 +120,7 @@ const BlogsPage = () => {
           >
             <div className="">
               <img
-                className="rounded-t-lg w-full h-72"
+                className="rounded-t-lg w-full h-52"
                 src={blog.image}
                 alt={blog.title}
               />

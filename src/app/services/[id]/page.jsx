@@ -24,6 +24,8 @@ const ServiceDetailsPage = ({ params }) => {
       setService(data.data);
     } catch (error) {
       console.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -32,6 +34,10 @@ const ServiceDetailsPage = ({ params }) => {
   }, []);
 
   console.log(service);
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
   return (
     <div className="w-11/12 max-w-screen-2xl mx-auto mb-28">
       <div>
