@@ -24,7 +24,7 @@ const HelpSection = () => {
         </p>
 
         {/* Call to Action Button */}
-        <div className="absolute -bottom-6 flex justify-center items-center bg-primary text-white px-8 py-4 rounded-md">
+        <div className="hidden sm:flex absolute -bottom-6 justify-center items-center bg-primary text-white px-8 py-4 rounded-md">
           Get A Quote
         </div>
       </div>

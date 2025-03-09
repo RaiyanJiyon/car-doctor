@@ -9,17 +9,17 @@ import HelpSection from "@/components/service-page/right-layout/HelpSection";
 import PricingCard from "@/components/service-page/right-layout/PricingCard";
 import ServiceList from "@/components/service-page/right-layout/ServiceList";
 import PageCover from "@/components/shared/PageCover";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 
-const ServiceDetailsPage = ({ params }) => {
+const ServiceDetailsPage = ({ params: paramsPromise }) => {
   const [service, setService] = useState([]);
   const [loading, setLoading] = useState(true);
+  const params = use(paramsPromise);
+  const { id } = params;
 
   const getService = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/services/api/${params.id}`
-      );
+      const response = await fetch(`http://localhost:3000/services/api/${id}`);
       const data = await response.json();
       setService(data.data);
     } catch (error) {
@@ -36,7 +36,7 @@ const ServiceDetailsPage = ({ params }) => {
   console.log(service);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
   return (
     <div className="w-11/12 max-w-screen-2xl mx-auto mb-28">
