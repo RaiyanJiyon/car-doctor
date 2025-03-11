@@ -1,17 +1,22 @@
 "use client";
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FaFacebookF, FaGithub } from "react-icons/fa";
 
 const SocialSignIn = () => {
   const router = useRouter();
   const session = useSession();
+  const searchParams = useSearchParams();
+  const path = searchParams.get('redirect');
 
   const handleSocialSignIn = async (provider) => {
     try {
       // Call signIn with `redirect: false` to prevent automatic redirection
-      const response = await signIn(provider, { redirect: false });
+      const response = await signIn(provider, { 
+        redirect: true,
+        callbackUrl: path ? path : '/' 
+      });
 
       // Log the response for debugging purposes
       console.log("Response from signIn:", response);

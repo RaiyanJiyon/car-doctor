@@ -24,7 +24,7 @@ const CheckoutPage = ({ params: paramsPromise }) => {
   // Handle form submission
   const onSubmit = async (data) => {
     try {
-      const response = await fetch(`http://localhost:3000/checkout/api/${id}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/checkout/api/${id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -44,7 +44,7 @@ const CheckoutPage = ({ params: paramsPromise }) => {
       const result = await response.json();
       SuccessToaster("Booking confirm");
       reset();
-      router.push("http://localhost:3000/my-bookings");
+      router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/my-bookings`);
     } catch (error) {
       console.error("Checkout error:", error);
       // Handle error display to user

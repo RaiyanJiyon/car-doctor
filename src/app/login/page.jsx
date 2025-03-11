@@ -6,10 +6,12 @@ import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import SuccessToaster from "@/components/shared/toaster/SuccessToaster";
 import ErrorToaster from "@/components/shared/toaster/ErrorToaster";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const LoginPage = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const path = searchParams.get('redirect')
   const {
     register,
     handleSubmit,
@@ -23,7 +25,8 @@ const LoginPage = () => {
       const response = await signIn("credentials", {
         email,
         password,
-        redirect: false,
+        redirect: true,
+        callbackUrl: path ? path : '/'
       });
 
       if (response.error) {

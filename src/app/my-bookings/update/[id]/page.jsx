@@ -79,7 +79,7 @@ const UpdateBookingPage = ({ params: paramsPromise }) => {
             }
 
             SuccessToaster("Booking updated successfully");
-            router.push(`http://localhost:3000/my-bookings`)
+            router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/my-bookings`)
             reset({}, { keepErrors: false }); // Clear form and errors after success
 
         } catch (error) {

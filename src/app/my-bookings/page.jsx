@@ -18,7 +18,7 @@ const BookingsPage = () => {
         try {
             setLoading(true);
             const response = await fetch(
-                `http://localhost:3000/my-bookings/api/bookings?email=${encodeURIComponent(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/my-bookings/api/bookings?email=${encodeURIComponent(
                     session.user.email
                 )}`
             );
@@ -56,7 +56,7 @@ const BookingsPage = () => {
     const handleCancelBooking = async (id) => {
         try {
             const response = await fetch(
-                `http://localhost:3000/my-bookings/api/booking/${id}`,
+                `${process.env.NEXT_PUBLIC_BASE_URL}/my-bookings/api/booking/${id}`,
                 {
                     method: "DELETE",
                 }

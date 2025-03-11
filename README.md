@@ -55,7 +55,7 @@
 
 1. **Clone the repository**  
    ```sh  
-   git clone https://github.com/RaiyanJiyon/job-box-client  
+   git clone https://github.com/RaiyanJiyon/car-doctor  
    cd car-doctor  
    ```  
 
@@ -144,7 +144,7 @@ Car Doctor supports **NextAuth.js** for secure authentication. Users can registe
 <h2 id="live-demo--repository">🌍 Live Demo & Repository</h2>  
 
 - **Live Site:** [Car Doctor](#) 
-- **GitHub Repository:** [GitHub Link](https://github.com/RaiyanJiyon/job-box-client)
+- **GitHub Repository:** [GitHub Link](https://github.com/RaiyanJiyon/car-doctor)
 
 ---
 
