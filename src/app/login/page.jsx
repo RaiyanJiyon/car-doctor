@@ -7,6 +7,7 @@ import { signIn } from "next-auth/react";
 import SuccessToaster from "@/components/shared/toaster/SuccessToaster";
 import ErrorToaster from "@/components/shared/toaster/ErrorToaster";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -101,9 +102,9 @@ const LoginPage = () => {
             <div className="text-center my-4 text-gray-500 font-medium">
               Or Sign In with
             </div>
-            <div>
+            <Suspense fallback={<div>Loading...</div>}>
               <SocialSignIn />
-            </div>
+            </Suspense>
             <p className="text-center mt-4 text-gray-600">
               Don't have an account?{" "}
               <Link href="/sign-up" className="text-primary font-bold">

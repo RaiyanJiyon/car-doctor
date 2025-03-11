@@ -4,6 +4,7 @@ import ErrorToaster from "@/components/shared/toaster/ErrorToaster";
 import SuccessToaster from "@/components/shared/toaster/SuccessToaster";
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense } from "react";
 import { useForm } from "react-hook-form";
 
 const SignUpPage = () => {
@@ -114,9 +115,9 @@ const SignUpPage = () => {
             <div className="text-center my-4 text-gray-500 font-medium">
               Or Sign Up with
             </div>
-            <div>
+            <Suspense fallback={<div>Loading...</div>}>
               <SocialSignIn />
-            </div>
+            </Suspense>
             <p className="text-center mt-4 text-gray-600">
               Already have an account?{" "}
               <Link href="/login" className="text-primary font-bold">
