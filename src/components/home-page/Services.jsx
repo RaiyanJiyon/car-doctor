@@ -11,7 +11,7 @@ const Services = () => {
 
   const getServices = async () => {
     try {
-      const response = await fetch('http://localhost:3000/services/api/get-all'); // Use relative path
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/services/api/get-all`); // Use relative path
       const data = await response.json();
       setServices(data.data || []); // Match API response structure
     } catch (error) {

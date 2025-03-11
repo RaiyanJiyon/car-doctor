@@ -19,7 +19,7 @@ const ServiceDetailsPage = ({ params: paramsPromise }) => {
 
   const getService = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/services/api/${id}`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/services/api/${id}`);
       const data = await response.json();
       setService(data.data);
     } catch (error) {

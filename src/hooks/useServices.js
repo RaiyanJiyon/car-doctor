@@ -10,7 +10,7 @@ const useServices = () => {
 
   const getServices = async () => {
     try {
-      const response = await fetch('http://localhost:3000/services/api/get-all');
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/services/api/get-all`);
       const data = await response.json(); // Use response.json() to parse the response body
       setServices(data.data || []);
     } catch (error) {
@@ -23,7 +23,7 @@ const useServices = () => {
   const getServiceById = async (id) => {
     setServiceLoading(true);
     try {
-      const response = await fetch(`http://localhost:3000/services/api/get/${id}`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/services/api/get/${id}`);
       const data = await response.json(); // Use response.json() to parse the response body
       setService(data.data || null);
     } catch (error) {

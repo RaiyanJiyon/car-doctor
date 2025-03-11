@@ -34,7 +34,7 @@ const UpdateBookingPage = ({ params: paramsPromise }) => {
     // Fetch Booking Data
     const getBooking = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/my-bookings/api/booking/${id}`);
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/my-bookings/api/booking/${id}`);
             const data = await response.json();
             setBooking(data.data);
         } catch (error) {
@@ -62,7 +62,7 @@ const UpdateBookingPage = ({ params: paramsPromise }) => {
     const onSubmit = async (data) => {
         console.log("Submitting data:", data);
         try {
-            const response = await fetch(`http://localhost:3000/my-bookings/api/booking/${id}`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/my-bookings/api/booking/${id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json"

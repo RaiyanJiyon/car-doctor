@@ -17,7 +17,7 @@ const SignUpPage = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch("http://localhost:3000/sign-up/api", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/sign-up/api`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -115,9 +115,9 @@ const SignUpPage = () => {
             <div className="text-center my-4 text-gray-500 font-medium">
               Or Sign Up with
             </div>
-            <Suspense fallback={<div>Loading...</div>}>
+            <div>
               <SocialSignIn />
-            </Suspense>
+            </div>
             <p className="text-center mt-4 text-gray-600">
               Already have an account?{" "}
               <Link href="/login" className="text-primary font-bold">
