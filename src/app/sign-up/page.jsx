@@ -1,13 +1,13 @@
 "use client";
+import { Suspense } from "react";
 import SocialSignIn from "@/components/shared/SocialSignIn";
 import ErrorToaster from "@/components/shared/toaster/ErrorToaster";
 import SuccessToaster from "@/components/shared/toaster/SuccessToaster";
 import Image from "next/image";
 import Link from "next/link";
-import { Suspense } from "react";
 import { useForm } from "react-hook-form";
 
-const SignUpPage = () => {
+const SignUpPageContent = () => {
   const {
     register,
     handleSubmit,
@@ -93,9 +93,9 @@ const SignUpPage = () => {
                 </label>
                 <input
                   id="password"
-                  {...register("password", { 
+                  {...register("password", {
                     required: "Password is required",
-                    minLength: { value: 8, message: "Password must be at least 8 characters long" }
+                    minLength: { value: 8, message: "Password must be at least 8 characters long" },
                   })}
                   type="password"
                   className="w-full px-4 py-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
@@ -115,7 +115,7 @@ const SignUpPage = () => {
             <div className="text-center my-4 text-gray-500 font-medium">
               Or Sign Up with
             </div>
-            <Suspense>
+            <Suspense fallback={<div>Loading...</div>}>
               <SocialSignIn />
             </Suspense>
             <p className="text-center mt-4 text-gray-600">
@@ -128,6 +128,14 @@ const SignUpPage = () => {
         </div>
       </div>
     </section>
+  );
+};
+
+const SignUpPage = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SignUpPageContent />
+    </Suspense>
   );
 };
 

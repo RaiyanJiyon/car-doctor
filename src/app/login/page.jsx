@@ -1,4 +1,5 @@
 "use client";
+import { Suspense } from "react";
 import SocialSignIn from "@/components/shared/SocialSignIn";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,12 +8,11 @@ import { signIn } from "next-auth/react";
 import SuccessToaster from "@/components/shared/toaster/SuccessToaster";
 import ErrorToaster from "@/components/shared/toaster/ErrorToaster";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense } from "react";
 
-const LoginPage = () => {
+const LoginPageContent = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const path = searchParams.get('redirect')
+  const path = searchParams.get("redirect");
   const {
     register,
     handleSubmit,
@@ -27,10 +27,10 @@ const LoginPage = () => {
         email,
         password,
         redirect: true,
-        callbackUrl: path ? path : '/'
+        callbackUrl: path ? path : "/",
       });
 
-      if (response.error) {
+      if (response?.error) {
         ErrorToaster(response.error.message || "Invalid email or password.");
       } else {
         SuccessToaster("Login successful!");
@@ -39,7 +39,9 @@ const LoginPage = () => {
       }
     } catch (error) {
       console.error("Login error:", error.message);
-      ErrorToaster("Unable to connect to the server. Please try again later.");
+      ErrorToaster(
+        "Unable to connect to the server. Please try again later."
+      );
     }
   };
 
@@ -63,7 +65,10 @@ const LoginPage = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
               {/* Email Field */}
               <div className="mb-6">
-                <label htmlFor="email" className="block text-gray-700 font-semibold mb-4">
+                <label
+                  htmlFor="email"
+                  className="block text-gray-700 font-semibold mb-4"
+                >
                   Email
                 </label>
                 <input
@@ -74,11 +79,16 @@ const LoginPage = () => {
                   placeholder="Your email"
                   aria-invalid={errors.email ? "true" : "false"}
                 />
-                {errors.email && <span className="text-red-500">{errors.email.message}</span>}
+                {errors.email && (
+                  <span className="text-red-500">{errors.email.message}</span>
+                )}
               </div>
               {/* Password Field */}
               <div className="mb-6">
-                <label htmlFor="password" className="block text-gray-700 font-semibold mb-4">
+                <label
+                  htmlFor="password"
+                  className="block text-gray-700 font-semibold mb-4"
+                >
                   Password
                 </label>
                 <input
@@ -89,7 +99,9 @@ const LoginPage = () => {
                   placeholder="Your password"
                   aria-invalid={errors.password ? "true" : "false"}
                 />
-                {errors.password && <span className="text-red-500">{errors.password.message}</span>}
+                {errors.password && (
+                  <span className="text-red-500">{errors.password.message}</span>
+                )}
               </div>
               {/* Submit Button */}
               <button
@@ -115,6 +127,14 @@ const LoginPage = () => {
         </div>
       </div>
     </section>
+  );
+};
+
+const LoginPage = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LoginPageContent />
+    </Suspense>
   );
 };
 

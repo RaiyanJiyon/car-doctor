@@ -40,10 +40,6 @@ const BookingsPage = () => {
     };
 
     useEffect(() => {
-        if (status === "unauthenticated") {
-            router.push("/login");
-        }
-
         if (status === "authenticated") {
             fetchBookings();
         }
