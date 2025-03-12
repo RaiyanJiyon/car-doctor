@@ -1,5 +1,4 @@
 "use client";
-import { useEffect, useState } from "react";
 import SocialSignIn from "@/components/shared/SocialSignIn";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,17 +7,12 @@ import { signIn } from "next-auth/react";
 import SuccessToaster from "@/components/shared/toaster/SuccessToaster";
 import ErrorToaster from "@/components/shared/toaster/ErrorToaster";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 const LoginPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [redirectPath, setRedirectPath] = useState("/");
-
-  useEffect(() => {
-    const path = searchParams.get("redirect");
-    if (path) setRedirectPath(path);
-  }, [searchParams]);
-
+  const path = searchParams.get('redirect')
   const {
     register,
     handleSubmit,
@@ -33,7 +27,7 @@ const LoginPage = () => {
         email,
         password,
         redirect: true,
-        callbackUrl: redirectPath,
+        callbackUrl: path ? path : '/'
       });
 
       if (response.error) {
@@ -41,7 +35,7 @@ const LoginPage = () => {
       } else {
         SuccessToaster("Login successful!");
         reset();
-        router.push(redirectPath);
+        router.push("/"); // Redirect to the home
       }
     } catch (error) {
       console.error("Login error:", error.message);
@@ -108,7 +102,9 @@ const LoginPage = () => {
             <div className="text-center my-4 text-gray-500 font-medium">
               Or Sign In with
             </div>
-            <SocialSignIn />
+            <Suspense fallback={<div>Loading...</div>}>
+              <SocialSignIn />
+            </Suspense>
             <p className="text-center mt-4 text-gray-600">
               Don't have an account?{" "}
               <Link href="/sign-up" className="text-primary font-bold">

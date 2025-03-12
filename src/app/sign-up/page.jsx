@@ -115,9 +115,9 @@ const SignUpPage = () => {
             <div className="text-center my-4 text-gray-500 font-medium">
               Or Sign Up with
             </div>
-            <div>
+            <Suspense>
               <SocialSignIn />
-            </div>
+            </Suspense>
             <p className="text-center mt-4 text-gray-600">
               Already have an account?{" "}
               <Link href="/login" className="text-primary font-bold">

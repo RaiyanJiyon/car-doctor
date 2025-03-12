@@ -3,20 +3,12 @@ import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FaFacebookF, FaGithub } from "react-icons/fa";
-import { useEffect, useState } from "react";
 
 const SocialSignIn = () => {
   const router = useRouter();
   const session = useSession();
   const searchParams = useSearchParams();
   const path = searchParams.get("redirect");
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulate a delay for better UX (or replace with real API loading)
-    const timer = setTimeout(() => setIsLoading(false), 1000);
-    return () => clearTimeout(timer);
-  }, []);
 
   const handleSocialSignIn = async (provider) => {
     try {
@@ -36,12 +28,6 @@ const SocialSignIn = () => {
       console.error("Sign-in error:", error.message);
     }
   };
-
-  if (isLoading) {
-    return (
-      <div className="text-center text-gray-500">Loading social sign-in options...</div>
-    );
-  }
 
   return (
     <div className="flex justify-center space-x-4">
